@@ -128,9 +128,41 @@ cmdObjs()
 	end
 end
 
+local function
+genDef(name, entry)
+	local t = entry.kind;
+
+	if not entry.value then
+		return ("/* #undef %s */"):format(name);
+	end
+
+	if t == "boolean" then
+		return ("#define CONFIG_%s 1"):format(name:upper());
+	elseif t == "string" then
+		return ("#define %s %s"):format(name:upper(), entry.value);
+	else
+		error("Unexpected kind");
+	end
+end
+
+local function
+cmdGenDefs()
+	if #arg == 1 then
+		local defs = {};
+		for name, entry in pairs(zdefs) do
+			table.insert(defs, genDef(name, entry));
+		end
+		table.insert(defs, "");
+		io.write(table.concat(defs, "\n"));
+	else
+		pusage "gendefs";
+	end
+end
+
 local commands = {
 	depends		= { f = cmdDepends, noConfig = true },
 	objs		= { f = cmdObjs },
+	gendefs		= { f = cmdGenDefs },
 };
 
 local function
