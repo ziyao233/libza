@@ -9,8 +9,9 @@ AR		:= $(CROSS_COMPILE)ar
 OBJCOPY		:= $(CROSS_COMPILE)objcopy
 
 CFLAGS		?=
-CFLAGS		+= -funsigned-char -Iinclude -ffunction-sections
+CFLAGS		+= -funsigned-char -Iinclude -ffunction-sections	\
+		   -Wall -Werror -Wextra -Os -pedantic
 CFLAGS		+= -fdata-sections
 
-%.o: %.c
+%.o: %.c %.d
 	$(CC) $< -c $(CFLAGS) -o $@

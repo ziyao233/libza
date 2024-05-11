@@ -50,8 +50,9 @@ end
 			[name: string] = {
 				depends		= { "dep1", "dep2" },
 				conflicts	= { "conflict1", "cnflict2" },
-				type		= "boolean" / "string",
+				kind		= "boolean" / "string" / "number",
 				objs		= { "obj1.o", "obj2.o" },
+				default		= ... ,
 			},
 		  }
 --]]
@@ -139,7 +140,10 @@ genDef(name, entry)
 	if t == "boolean" then
 		return ("#define CONFIG_%s 1"):format(name:upper());
 	elseif t == "string" then
-		return ("#define %s %s"):format(name:upper(), entry.value);
+		return ("#define CONFIG_%s %s"):format(name:upper(), entry.value);
+	elseif t == "number" then
+		return ("#define CONFIG_%s %d"):format(name:upper(),
+						       entry.value // 1);
 	else
 		error("Unexpected kind");
 	end
@@ -159,10 +163,25 @@ cmdGenDefs()
 	end
 end
 
+local function
+cmdDescribe()
+	if #arg == 2 then
+		local v = zdefs[arg[2]];
+		if not v then
+			perrf("entry `%s` undefined", arg[2]);
+		else
+			print(v.description or "(no description)");
+		end
+	else
+		pusage "describe CONFIG";
+	end
+end
+
 local commands = {
 	depends		= { f = cmdDepends, noConfig = true },
 	objs		= { f = cmdObjs },
 	gendefs		= { f = cmdGenDefs },
+	describe	= { f = cmdDescribe, noConfig = true },
 };
 
 local function
@@ -202,6 +221,10 @@ resolveConfig()
 	for _, entry in pairs(zdefs) do
 		if entry.kind == "boolean" and entry.value == true then
 			recursiveEnableDepends(entry);
+		elseif entry.kind ~= "boolean" then
+			if not entry.value then
+				entry.value = entry.default;
+			end
 		end
 	end
 end
