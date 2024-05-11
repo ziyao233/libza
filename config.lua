@@ -1,1 +1,4 @@
-return { lib = true };
+return {
+	gpio			= true,
+	gpio_atmega		= true,
+       };
