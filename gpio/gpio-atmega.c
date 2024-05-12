@@ -16,7 +16,7 @@
 #define PIN_TO_BIT(pin)		((pin) & 0x7)
 
 void
-za_gpio_mux(ZA_GPIO_Pin pin, int direction, int pull)
+za_gpio_conf(ZA_GPIO_Pin pin, int direction, int pull)
 {
 	unsigned int port = PIN_TO_PORT(pin);
 	unsigned int bit  = PIN_TO_BIT(pin);

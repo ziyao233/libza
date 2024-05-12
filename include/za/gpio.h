@@ -11,7 +11,7 @@ typedef uint16_t ZA_GPIO_Pin;
 #define ZA_GPIO_PULLUP		1
 #define ZA_GPIO_PULLDOWN	2
 
-void za_gpio_mux(ZA_GPIO_Pin pin, int direction, int pull);
+void za_gpio_conf(ZA_GPIO_Pin pin, int direction, int pull);
 void za_gpio_write(ZA_GPIO_Pin pin, int value);
 int za_gpio_read(ZA_GPIO_Pin pin);
 
