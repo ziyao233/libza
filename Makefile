@@ -33,7 +33,8 @@ disbuild: clean
 	-rm -f include/za/config.h
 
 %.d: %.c
-	$(CC) -MM $< -MF $@ $(CFLAGS)
+	echo -n "$(shell dirname $<)/" > $@
+	$(CC) -MM $< $(CFLAGS) >> $@
 
 ifeq (0,$(words $(findstring $(MAKEFLAGGOALS), disbuild clean)))
 include $(DEPS)
