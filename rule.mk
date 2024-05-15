@@ -10,8 +10,7 @@ OBJCOPY		:= $(CROSS_COMPILE)objcopy
 
 CFLAGS		?=
 CFLAGS		+= -funsigned-char -Iinclude -ffunction-sections	\
-		   -Wall -Werror -Wextra -Os -pedantic
+		   -Wall -Werror -Wextra -Os -pedantic			\
+		   -Wno-array-bounds					\
+		   $(shell tools/zconfig.lua value cflags)
 CFLAGS		+= -fdata-sections
-
-%.o: %.c %.d
-	$(CC) $< -c $(CFLAGS) -o $@

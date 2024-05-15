@@ -177,11 +177,28 @@ cmdDescribe()
 	end
 end
 
+local function
+cmdValue()
+	if #arg == 2 then
+		local v = zdefs[arg[2]];
+		if not v then
+			perrf("entry `%s` undefined", arg[2]);
+		elseif not v.value then
+			perrf("entry `%s` has no value", arg[2]);
+		else
+			print(v.value);
+		end
+	else
+		pusage "value CONFIG";
+	end
+end
+
 local commands = {
 	depends		= { f = cmdDepends, noConfig = true },
 	objs		= { f = cmdObjs },
 	gendefs		= { f = cmdGenDefs },
 	describe	= { f = cmdDescribe, noConfig = true },
+	value		= { f = cmdValue },
 };
 
 local function

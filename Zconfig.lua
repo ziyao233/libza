@@ -31,4 +31,10 @@ configs.uart_atmega = {
 	objs		= { "uart/uart-atmega.o" },
 };
 
+configs.cflags = {
+	description	= "CFLAGS used for build libza",
+	kind		= "string",
+	default		= "",
+};
+
 return configs;
