@@ -1,3 +1,10 @@
+/*
+ *	libza
+ *	/include/za/bitop.h
+ *	SPDX-License-Identifier: MPL-2.0
+ *	Copyright (c) 2024 Yao Zi <ziyao@disroot.org>
+ */
+
 #ifndef __ZA_BITOP_H_INC__
 #define __ZA_BITOP_H_INC__
 

@@ -1,3 +1,10 @@
+/*
+ *	libza
+ *	/gpio/gpio-atmega.c
+ *	SPDX-License-Indentifier: MPL-2.0
+ *	Copyright (c) 2024 Yao Zi <ziyao@disroot.org>
+ */
+
 #include<za/config.h>
 #include<za/memory.h>
 #include<za/gpio.h>

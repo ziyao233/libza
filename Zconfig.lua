@@ -16,4 +16,19 @@ configs.atmega_ioreg_offset = {
 	default	    = 0x20,
 };
 
+configs.system_freq = {
+	description	= "System clock frequency",
+	kind		= "number",
+};
+
+configs.uart = {
+	description = "UART support",
+};
+
+configs.uart_atmega = {
+	depends		= { "uart" },
+	description	= "UART support for Atmega Devices",
+	objs		= { "uart/uart-atmega.o" },
+};
+
 return configs;

@@ -1,3 +1,10 @@
+/*
+ *	libza
+ *	/include/za/gpio.h
+ *	SPDX-License-Indentifier: MPL-2.0
+ *	Copyright (c) 2024 Yao Zi <ziyao@disroot.org>
+ */
+
 #ifndef __ZA_GPIO_H_INC__
 #define __ZA_GPIO_H_INC__
 
