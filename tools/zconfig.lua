@@ -138,11 +138,11 @@ genDef(name, entry)
 	end
 
 	if t == "boolean" then
-		return ("#define CONFIG_%s 1"):format(name:upper());
+		return ("#define ZCONFIG_%s 1"):format(name:upper());
 	elseif t == "string" then
-		return ("#define CONFIG_%s %s"):format(name:upper(), entry.value);
+		return ("#define ZCONFIG_%s %s"):format(name:upper(), entry.value);
 	elseif t == "number" then
-		return ("#define CONFIG_%s %d"):format(name:upper(),
+		return ("#define ZCONFIG_%s %d"):format(name:upper(),
 						       entry.value // 1);
 	else
 		error("Unexpected kind");

@@ -9,7 +9,7 @@
 #include<za/memory.h>
 #include<za/uart.h>
 
-#ifndef CONFIG_SYSTEM_FREQ
+#ifndef ZCONFIG_SYSTEM_FREQ
 	#error "Please set system_freq."
 #endif
 
@@ -27,7 +27,7 @@ za_uart_conf_baud(ZA_UART_Port port, uint32_t baudrate)
 {
 	(void)port;
 	(void)baudrate;
-	uint16_t ubbr = CONFIG_SYSTEM_FREQ / 16 / baudrate - 1;
+	uint16_t ubbr = ZCONFIG_SYSTEM_FREQ / 16 / baudrate - 1;
 	za_writeb(UBRRH, (ubbr >> 8) & 0x0f);
 	za_writeb(UBRRL, ubbr & 0xff);
 	return;

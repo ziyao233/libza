@@ -10,7 +10,7 @@
 #include<za/gpio.h>
 #include<za/bitop.h>
 
-#define GPIO_ADDR_START		(uint16_t)(CONFIG_ATMEGA_IOREG_OFFSET + 0x03)
+#define GPIO_ADDR_START		(uint16_t)(ZCONFIG_ATMEGA_IOREG_OFFSET + 0x03)
 #define REG(reg, port) \
 	(*(volatile uint8_t *)(GPIO_ADDR_START + (port) * 3 + (reg)))
 #define PIN			0
