@@ -16,5 +16,6 @@
 #define za_bit_clr(v, b)	(v) &= ~(1 << (b))
 #define za_bit_get(v, b)	(v) & (1 << (b))
 #define za_bit_getone(v, b)	(((v) >> (b)) & 1)
+#define ZA_BIT(n)		(1 << (n))
 
 #endif	// __ZA_BITOP_H_INC__
